@@ -1,71 +1,52 @@
 import koa from 'koa'
-import KoaRouter from 'koa-router'
+import KoaRouter from '@koa/router'
 import koaBody from 'koa-body'
-import { ApolloServer, gql } from 'apollo-server-koa'
-import schema from './graphql/index'
+import { ApolloServer } from 'apollo-server-koa'
+import FetchTool from './utils/fetchTool'
+// import { resolvers, typeDefs } from './graphql/index'
+import schema from './graphql/schema/index'
+// import schema from './graphql/schema/user'
 const app = new koa()
 const router = new KoaRouter()
-import FetchTool from './utils/fetchTool'
-// import schema from './src/graphql/schema.js'
-// import executableSchema from './src/graphql/executableSchema'
+
 // router.post('/graphql', koaBody(), graphqlKoa({ schema: executableSchema }))
 // router.get('/graphql', graphqlKoa({ schema: executableSchema }))
 // router.get('/graphiql', graphiqlKoa({ endpointURL: '/graphql' }))
 
-const books = [{
-    title: 'Harry Potter and the Chamber of Secrets',
-    author: 'J.K. Rowling'
-}, {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton'
-}];
-const typeDefs = gql`
-  # 模型
-  type Book {
-    title: String
-    author: String
-  }
-
-  # 查询
-  type Query {
-    books: [Book]
-  }
-`;
-// 解析器（决定查询，突变）返回什么数据
-const resolvers = {
-    Query: {
-        books: () => books,
-    },
-};
-
-// 创建Graphql server
+/* 创建Graphql server */
+// const server = new ApolloServer({
+//     typeDefs, resolvers
+// })
+/* 自建立schema */
 const server = new ApolloServer({
-    typeDefs, resolvers
+  schema
 })
-//apollo server使用koa中间件
+
+/* apollo server使用koa中间件 */
 server.applyMiddleware({app})
+
 router.get('/activity/info', async ctx => {
-    await FetchTool.$post('/frontend/live/info', {
-        activityId: ctx.params.activityId
-    }).then((res) => {
-        ctx.body = res
-    }).catch((error) => {
-        ctx.body = error
-    })
+  await FetchTool.$post('/frontend/live/info', {
+    activityId: ctx.params.activityId
+  }).then((res) => {
+    ctx.body = res
+  }).catch((error) => {
+    ctx.body = error
+  })
 })
 router.post('/', ctx => {
-    ctx.body = "post 哈哈哈"
+  ctx.body = "post 哈哈哈"
 })
 router.all('/', ctx => {
-    ctx.body = "post get 哈哈哈"
+  ctx.body = "post get 哈哈哈"
 })
 app.use(koaBody())
 .use(async (ctx, next) => {
-    ctx.params = {
-        ...ctx.query,
-        ...ctx.request.body
-    }
-    await next()
+  ctx.params = {
+    ...ctx.query,
+    ...ctx.request.body
+  }
+  await next()
 })
 .use(router.routes())
 .use(router.allowedMethods())

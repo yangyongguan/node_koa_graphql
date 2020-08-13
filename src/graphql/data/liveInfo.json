@@ -1,0 +1,29 @@
+{
+  "code": 200,
+  "msg": null,
+  "data": {
+    "activity": {
+      "id": "55964731",
+      "title": "横屏直播-test",
+      "imgUrl": null,
+      "description": "简介",
+      "startTime": "2020-08-30 00:00:00"
+    },
+    "joinInfo": {
+      "isApplay": false,
+      "isOrder": false
+    },
+    "userList": [
+      {
+        "name": "张三",
+        "age": 10,
+        "money": 1000.01
+      },
+      {
+        "name": "李四",
+        "age": 24,
+        "money": 10000.99
+      }
+    ]
+  }
+}
