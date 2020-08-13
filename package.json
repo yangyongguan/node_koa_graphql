@@ -1,0 +1,30 @@
+{
+  "name": "node-graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "local": "cross-env NODE_ENV=local nodemon --inspect --exec babel-node ./src/server.js",
+    "dev": "cross-env NODE_ENV=local nodemon ./src/app.js",
+    "test": "cross-env NODE_ENV=test node server.js"
+  },
+  "author": "yyg",
+  "license": "ISC",
+  "dependencies": {
+    "@koa/cors": "^3.1.0",
+    "@koa/router": "^9.3.1",
+    "graphql": "^15.3.0",
+    "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
+    "node-fetch": "^2.6.0",
+    "qs": "^6.9.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.0",
+    "apollo-server-koa": "^2.16.1",
+    "cross-env": "^7.0.2",
+    "nodemon": "^2.0.4"
+  }
+}
