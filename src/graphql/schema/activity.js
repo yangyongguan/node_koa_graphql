@@ -6,7 +6,7 @@ import {
 
 import ActivityController from '../../controller/ActivityController'
 
-/* 定义活动信息对象 */
+/* 定义活动信息对象 模型 */
 const activityType = new GraphQLObjectType({
   name: 'activity',
   description: '活动信息对象',
@@ -21,7 +21,7 @@ const activityType = new GraphQLObjectType({
   }
 })
 
-/* 定义活动对象 */
+/* 定义活动查询resolvers解析器（决定查询）返回什么数据 */
 export const Activity = {
   name: 'ActivityInfo',
   type: activityType,

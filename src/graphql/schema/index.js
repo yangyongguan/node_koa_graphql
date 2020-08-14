@@ -1,12 +1,12 @@
 import {
   GraphQLSchema,
-  GraphQLObjectType // 对象类型
+  GraphQLObjectType
 } from 'graphql'
 
 import { Activity } from './activity'
 import { UserList } from './user'
 
-/* 查询对象 */
+/* 汇总 并创建查询对象 */
 let QueryObj = new GraphQLObjectType({
   name: 'query',
   fields: () => ({
@@ -15,6 +15,7 @@ let QueryObj = new GraphQLObjectType({
   })
 })
 
+/* 创建 Schema 对象 */
 export default  new GraphQLSchema({
   query: QueryObj
 })

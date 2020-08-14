@@ -17,12 +17,22 @@
       {
         "name": "张三",
         "age": 10,
-        "money": 1000.01
+        "money": 1000.01,
+        "friends": ["朋友1", "朋友2", "朋友3"],
+        "account": {
+          "username": "VHALL_张三",
+          "paasword": "vhall123"
+        }
       },
       {
         "name": "李四",
         "age": 24,
-        "money": 10000.99
+        "money": 10000.99,
+        "friends": ["朋友11", "朋友22", "朋友33"],
+        "account": {
+          "username": "VHALL_李四",
+          "paasword": "vhall123"
+        }
       }
     ]
   }
