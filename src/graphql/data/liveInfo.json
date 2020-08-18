@@ -27,7 +27,7 @@
       {
         "name": "李四",
         "age": 24,
-        "money": 10000.99,
+        "money": "sadfadf",
         "friends": ["朋友11", "朋友22", "朋友33"],
         "account": {
           "username": "VHALL_李四",

@@ -1,7 +1,8 @@
 import {
   GraphQLObjectType, // 对象类型
   GraphQLString, // 字符串类型
-  GraphQLInt // int类型
+  GraphQLInt, // int类型
+  GraphQLNonNull
 } from 'graphql'
 
 import ActivityController from '../../controller/ActivityController'
@@ -26,9 +27,13 @@ export const Activity = {
   name: 'ActivityInfo',
   type: activityType,
   args: { //定义参数
+    // id: {
+    //   name: 'id',
+    //   type: GraphQLInt
+    // },
     id: {
       name: 'id',
-      type: GraphQLInt
+      type: new GraphQLNonNull(GraphQLInt)
     }
   },
   async resolve(parent, args, context, info) {

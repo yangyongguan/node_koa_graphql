@@ -16,8 +16,8 @@ export const typeDefs = gql`
     money: Float
   }
   type Activity {
-    id: Int,
-    title: String,
+    id: Int!,
+    title: String!,
     imgUrl: String,
     description: String,
     startTime: String
