@@ -1,8 +1,9 @@
 import koa from 'koa'
 import KoaRouter from '@koa/router'
 import koaBody from 'koa-body'
-import { ApolloServer } from 'apollo-server-koa'
+import { ApolloServer, ApolloError } from 'apollo-server-koa'
 import FetchTool from './utils/fetchTool'
+import './utils/extend'
 // import { resolvers, typeDefs } from './graphql/index'
 // import schema from './graphql/schema/user'
 import schema from './graphql/schema/index'
@@ -43,8 +44,22 @@ app.use(koaBody())
 /* 自建立schema */
 const server = new ApolloServer({
   schema,
+  debug: false,
+  formatError: error => {
+    console.warn(error)
+    return new ApolloError('请求参数错误', 500, {
+      code: error.extensions.code,
+      msg: error.extensions.exception,
+      path: error.path
+    })
+  },
   context: ctx => {
     // 用户认证之类可以在此做
+    const isLogin = true
+    if (!isLogin) {
+      // 认证失败，抛出错误
+      throw new ApolloError('用户认证失败', 502);
+    }
   }
 })
 /* apollo server使用koa中间件 */

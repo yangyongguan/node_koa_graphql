@@ -7,6 +7,7 @@ import LiveInfo from './data/liveInfo.json'
     String：UTF‐8 字符序列。
     Boolean：true 或者 false。
     ID：ID 标量类型表示一个唯一标识符，通常用以重新获取对象或者作为缓存中的键。ID 类
+    https://www.apollographql.com/docs/apollo-server/schema/schema/#scalar-types
 */
 export const typeDefs = gql`
   # 模型
